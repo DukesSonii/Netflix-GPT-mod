@@ -4,7 +4,7 @@ const configSlice = createSlice({
   name: "config",
 
   initialState: {
-    lang: "English",
+    lang: "en",
   },
 
   reducers: {
