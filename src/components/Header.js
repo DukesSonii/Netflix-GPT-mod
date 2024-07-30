@@ -63,15 +63,15 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full flex justify-between">
+    <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full flex flex-col md:flex-row justify-between">
       <img
-        className="w-48 cursor-pointer"
+        className="w-48 cursor-pointer mx-auto md:mx-0"
         src={oneimage}
         alt="netflix-logo"
         onClick={() => navigate("/")}
       />
       {user && (
-        <div className="flex p-4 gap-2 items-center">
+        <div className="flex justify-between p-4 gap-2 items-center">
           {showGptSearchVal && (
             <select
               className="bg-gray-900 text-white p-2 rounded-lg border border-gray-600 border-none"
@@ -91,19 +91,19 @@ const Header = () => {
           )}
 
           <button
-            className="font-bold text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:ring-blue-300 rounded-lg px-4 py-2 transition-all duration-300"
+            className="-ml-8 md:ml-0 font-bold text-xs md:text-lg text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:ring-blue-300 rounded-lg px-2 md:px-4 py-2 transition-all duration-300"
             onClick={gptsearchclick}
           >
             {showGptSearchVal ? "Home" : "GPT Search"}
           </button>
           <img
-            className="w-12 h-12 rounded-full"
+            className="hidden md:block  w-12 h-12 rounded-full"
             src={user.photoURL}
             alt="UserIcon"
           />
 
           <button
-            className="font-bold text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-blue-300 rounded-lg px-4 py-2 transition-all duration-300"
+            className="text-xs md:text-lg font-bold text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-blue-300 rounded-lg px-2 md:px-4 py-2 transition-all duration-300"
             onClick={handleSignOut}
           >
             Sign out
