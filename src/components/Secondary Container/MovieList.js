@@ -1,11 +1,26 @@
-import React, { useRef } from "react";
-import { Button } from "antd";
+import React, { useRef, useState } from "react";
+import { Button, Modal } from "antd";
 
 import MovieCard from "./MovieCard";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-const MovieList = ({ title, movies }) => {
-  const scrollRef = useRef(null);
+import { IMG_CDN } from "../../utils/constants";
+import { Typography } from "antd";
+import "./MovieList.css";
+import { useSelector } from "react-redux";
+import useMovieCast from "../../Hooks/useMovieCast";
+import ModalContent from "./ModalContent";
+import useMovieTrailerforMov from "../../Hooks/useMovieTrailerforMov";
+const { Text } = Typography;
 
+const MovieList = ({ title, movies }) => {
+  const trailerVideo = useSelector((store) => store.movie.trailerForEachMovie);
+  const [isVisible, setisisVisible] = useState(false);
+  const [selectedMovie, setselectedMovie] = useState(null);
+  const scrollRef = useRef(null);
+  const cast = useSelector((store) => store.movie.charactersCast);
+  useMovieCast(selectedMovie?.id);
+
+  useMovieTrailerforMov(selectedMovie?.id);
   const leftScroll = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: -500, behavior: "smooth" });
@@ -17,22 +32,39 @@ const MovieList = ({ title, movies }) => {
       scrollRef.current.scrollBy({ left: 500, behavior: "smooth" });
     }
   };
+
+  const handleOk = () => {
+    setisisVisible(false);
+  };
+
+  const showModal = (movie) => {
+    setisisVisible(true);
+    setselectedMovie(movie);
+  };
+  const handleCancel = () => {
+    setisisVisible(false);
+  };
+
   return (
     <div className="px-5 relative ">
       <h1 className="text-lg md:text-2xl py-2 font-sans mb-4 text-white">
         {title}
       </h1>
+      <h1 className="text-white">{movies?.title}</h1>
       <div
-        className="flex space-x-3 overflow-x-scroll"
+        className="flex space-x-3 overflow-x-scroll cursor-pointer"
         style={{
           scrollbarWidth: "none",
         }}
         ref={scrollRef}
       >
         {movies?.map((movie) => (
-          <MovieCard key={movie.id} posterpath={movie?.poster_path} />
+          <div key={movie.id} onClick={() => showModal(movie)}>
+            <MovieCard key={movie.id} posterpath={movie?.poster_path} />
+          </div>
         ))}
       </div>
+
       <Button
         className="absolute top-1/2 transform -translate-y-1 left-0 z-10 text-4xl"
         style={{
@@ -55,6 +87,14 @@ const MovieList = ({ title, movies }) => {
       >
         <RightOutlined />
       </Button>
+      <ModalContent
+        isVisible={isVisible}
+        selectedMovie={selectedMovie}
+        trailerVideo={trailerVideo}
+        onCancel={handleCancel}
+        onOk={handleOk}
+        cast={cast}
+      />
     </div>
   );
 };
