@@ -1,6 +1,7 @@
 import { Modal, Typography } from "antd";
 import React from "react";
 import Characters from "./Characters";
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 
@@ -36,6 +37,12 @@ const ModalContent = ({
         <p>
           <Text className="text-white text-lg font-semibold">Popularity: </Text>
           <span className="text-white">{selectedMovie?.popularity}</span>
+        </p>
+        <p>
+          <Text className="text-white text-lg font-semibold">Adult: </Text>
+          <span className="text-white">
+            {selectedMovie?.adult ? <CheckOutlined /> : <CloseOutlined />}
+          </span>
         </p>
         <div className="mt-4">
           <Text className="text-white text-lg font-semibold">Trailer:</Text>

@@ -22,9 +22,7 @@ const useMovieTrailerforMov = (movieId) => {
     );
 
     const json = await data.json();
-    console.log(json);
     const filterlist = json?.results?.filter((mov) => mov.type === "Trailer");
-    console.log(filterlist);
     const trailer = filterlist.length ? filterlist[0] : json.results[0];
     dispatch(addTrailerforEachMovie(trailer));
   };
