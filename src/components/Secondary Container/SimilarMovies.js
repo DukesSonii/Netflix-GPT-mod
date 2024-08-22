@@ -40,7 +40,7 @@ const SimilarMovies = ({ onPosterClick }) => {
         </div>
       ) : (
         showMovies && (
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-8 mb-3">
             {Movies?.slice(0, 11).map((movie) => {
               if (!movie?.poster_path) return null;
               return (

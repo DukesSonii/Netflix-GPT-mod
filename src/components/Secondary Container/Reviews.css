@@ -1,12 +1,12 @@
 .modal-css .ant-modal-content {
-  background-color: rgb(36, 34, 34);
+  background-color: #1a1a1a;
   color: white;
   width: 900px;
-  top: 50px; /* Adjust the top position */
+  top: -50px;
 }
 
 .modal-css .ant-modal-header {
-  background-color: rgb(36, 34, 34);
+  background-color: #1a1a1a;
   color: white;
 }
 
