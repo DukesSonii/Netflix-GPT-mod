@@ -16,7 +16,7 @@ const Characters = ({ cast }) => {
   };
 
   return (
-    <div className="py-3 px-4 bg-gray-800 rounded-lg shadow-md">
+    <div className="py-1 px-4 bg-gray-800 rounded-lg shadow-md">
       <div
         className="flex justify-between items-center cursor-pointer"
         onClick={toggleAccordion}
@@ -24,7 +24,13 @@ const Characters = ({ cast }) => {
         <h3 className="text-white text-lg font-bold mb-2">Cast:</h3>
         <Button
           type="text"
-          icon={showAccordion ? <UpOutlined /> : <DownOutlined />}
+          icon={
+            showAccordion ? (
+              <UpOutlined style={{ color: "white" }} />
+            ) : (
+              <DownOutlined style={{ color: "white" }} />
+            )
+          }
         />
       </div>
       {cast.length > 0 ? (

@@ -16,6 +16,7 @@ const useMovieCast = (movieId) => {
       API_OPTIONS
     );
     const data = await response.json();
+
     dispatch(addCharacters(data.cast));
   };
 };

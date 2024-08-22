@@ -7,20 +7,12 @@ import { IMG_CDN } from "../../utils/constants";
 import { Typography } from "antd";
 import "./MovieList.css";
 import { useSelector } from "react-redux";
-import useMovieCast from "../../Hooks/useMovieCast";
-import ModalContent from "./ModalContent";
-import useMovieTrailerforMov from "../../Hooks/useMovieTrailerforMov";
+
 const { Text } = Typography;
 
-const MovieList = ({ title, movies }) => {
-  const trailerVideo = useSelector((store) => store.movie.trailerForEachMovie);
-  const [isVisible, setisisVisible] = useState(false);
-  const [selectedMovie, setselectedMovie] = useState(null);
+const MovieList = ({ title, movies, onPosterClick }) => {
   const scrollRef = useRef(null);
-  const cast = useSelector((store) => store.movie.charactersCast);
-  useMovieCast(selectedMovie?.id);
 
-  useMovieTrailerforMov(selectedMovie?.id);
   const leftScroll = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: -500, behavior: "smooth" });
@@ -31,18 +23,6 @@ const MovieList = ({ title, movies }) => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: 500, behavior: "smooth" });
     }
-  };
-
-  const handleOk = () => {
-    setisisVisible(false);
-  };
-
-  const showModal = (movie) => {
-    setisisVisible(true);
-    setselectedMovie(movie);
-  };
-  const handleCancel = () => {
-    setisisVisible(false);
   };
 
   return (
@@ -59,7 +39,7 @@ const MovieList = ({ title, movies }) => {
         ref={scrollRef}
       >
         {movies?.map((movie) => (
-          <div key={movie.id} onClick={() => showModal(movie)}>
+          <div key={movie.id} onClick={() => onPosterClick(movie)}>
             <MovieCard key={movie.id} posterpath={movie?.poster_path} />
           </div>
         ))}
@@ -87,14 +67,6 @@ const MovieList = ({ title, movies }) => {
       >
         <RightOutlined />
       </Button>
-      <ModalContent
-        isVisible={isVisible}
-        selectedMovie={selectedMovie}
-        trailerVideo={trailerVideo}
-        onCancel={handleCancel}
-        onOk={handleOk}
-        cast={cast}
-      />
     </div>
   );
 };
