@@ -10,14 +10,16 @@ import {
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
 import { BG_URL, USER_AVATAR } from "../utils/constants";
-
+import { Spin } from "antd";
+import Shimmer from "./Shimmer";
 const Login = () => {
   const dispatch = useDispatch();
   const [IsSignin, setIsSignin] = useState(true);
   const [errormessage, seterrormessage] = useState(null);
-
+  const [loading, setloading] = useState(false);
   const email = useRef(null);
   const password = useRef(null);
+  const phone = useRef(null);
   const name = useRef(null);
   const toggleSignInForm = () => {
     setIsSignin(!IsSignin);
@@ -27,11 +29,12 @@ const Login = () => {
     const message = checkvalidator(email.current.value, password.current.value);
     seterrormessage(message);
 
-    if (message) return; //if error message was there then return from there
+    if (message) return; //i dont want program to go ahead just return from here in this function
 
     //sign in sign up logic
-
+    setloading(true);
     if (!IsSignin) {
+      //it is sign up form bc it is !IsSignin
       //sign up logic
       createUserWithEmailAndPassword(
         auth,
@@ -41,12 +44,13 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          console.log(user);
+
           updateProfile(user, {
             displayName: name.current.value,
             photoURL: USER_AVATAR,
           })
             .then(() => {
-              // Profile updated!
               const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(
                 addUser({
@@ -65,7 +69,8 @@ const Login = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           seterrormessage(errorCode + "-" + errorMessage);
-        });
+        })
+        .finally(() => setloading(false));
     } else {
       //sign in logic
       signInWithEmailAndPassword(
@@ -81,9 +86,14 @@ const Login = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           seterrormessage(errorCode + "-" + errorMessage);
-        });
+        })
+        .finally(() => setloading(false));
     }
   };
+
+  if (loading) {
+    return <Shimmer />;
+  }
 
   return (
     <div>
@@ -91,50 +101,58 @@ const Login = () => {
       <div className="absolute inset-0">
         <img src={BG_URL} alt="logo" className="h-full w-full  object-cover" />
       </div>
-
-      <form
-        className="w-full md:w-8/12 lg:w-6/12 xl:w-4/12 absolute p-4 md:p-12 bg-black my-24 mx-auto right-0 left-0 text-white bg-opacity-75"
-        onClick={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <h1 className="font-bold text-2xl sm:text-3xl py-2 sm:py-4">
-          {IsSignin ? "Sign In" : "Sign Up"}
-        </h1>
-        {!IsSignin && (
+      <div className="absolute inset-0 flex justify-center items-center">
+        <form
+          className="w-full md:w-8/12 lg:w-6/12 xl:w-4/12 p-4 md:p-12 bg-black text-white bg-opacity-75 rounded-lg"
+          onClick={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <h1 className="font-bold text-2xl sm:text-3xl py-2 sm:py-4">
+            {IsSignin ? "Sign In" : "Sign Up"}
+          </h1>
+          {!IsSignin && (
+            <input
+              ref={name}
+              type="text"
+              placeholder="Enter Name"
+              className="p-2 sm:p-4 my-2 sm:my-4 w-full bg-gray-800 rounded-lg"
+            />
+          )}
           <input
-            ref={name}
+            ref={email}
             type="text"
-            placeholder="Enter Name"
+            placeholder="Email Address"
             className="p-2 sm:p-4 my-2 sm:my-4 w-full bg-gray-800 rounded-lg"
           />
-        )}
-        <input
-          ref={email}
-          type="text"
-          placeholder="Email Address"
-          className="p-2 sm:p-4 my-2 sm:my-4 w-full bg-gray-800 rounded-lg"
-        />
-
-        <input
-          ref={password}
-          type="password"
-          placeholder="Password"
-          className="p-2 sm:p-4 my-2 sm:my-4 w-full bg-gray-800 rounded-lg"
-        />
-        <p className="text-red-400 font-bold text-sm">{errormessage}</p>
-        <button
-          className="p-2 sm:p-4 my-2 sm:my-4 bg-red-700 w-full rounded-lg"
-          onClick={handelbuttonClick}
-        >
-          {IsSignin ? "Sign In" : "Sign Up"}
-        </button>
-        <p className="py-2 sm:py-4 cursor-pointer" onClick={toggleSignInForm}>
-          {IsSignin
-            ? "New To Netflix? Sign Up Now"
-            : "Already registered user? Sign in now"}
-        </p>
-      </form>
+          {!IsSignin && (
+            <input
+              ref={phone}
+              type="text"
+              placeholder="Email Phone"
+              className="p-2 sm:p-4 my-2 sm:my-4 w-full bg-gray-800 rounded-lg"
+            />
+          )}
+          <input
+            ref={password}
+            type="password"
+            placeholder="Password"
+            className="p-2 sm:p-4 my-2 sm:my-4 w-full bg-gray-800 rounded-lg"
+          />
+          <p className="text-red-400 font-bold text-sm">{errormessage}</p>
+          <button
+            className="p-2 sm:p-4 my-2 sm:my-4 bg-red-700 w-full rounded-lg"
+            onClick={handelbuttonClick}
+          >
+            {IsSignin ? "Sign In" : "Sign Up"}
+          </button>
+          <p className="py-2 sm:py-4 cursor-pointer" onClick={toggleSignInForm}>
+            {IsSignin
+              ? "New To Netflix? Sign Up Now"
+              : "Already registered user? Sign in now"}
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

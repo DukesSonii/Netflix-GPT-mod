@@ -42,6 +42,7 @@ const Header = () => {
 
     //unsubscribe when component unmounts
     return () => {
+      //when we call unsubscribe it will remove onAuthStateChanged from the browser
       unsubscribe();
     };
   }, []);

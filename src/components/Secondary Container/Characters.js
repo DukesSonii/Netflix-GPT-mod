@@ -1,29 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import { IMG_CDN } from "../../utils/constants";
 
+import { Avatar, Button } from "antd";
+import { UserOutlined, UpOutlined, DownOutlined } from "@ant-design/icons";
+
 const Characters = ({ cast }) => {
+  const [showAccordion, setShowAccordion] = useState(false);
+
+  if (!cast) {
+    return <h1>Loading...</h1>;
+  }
+
+  const toggleAccordion = () => {
+    setShowAccordion(!showAccordion);
+  };
+
   return (
-    <div className="p-4 bg-gray-700 rounded-md">
-      <h3 className="text-white text-lg font-semibold mb-2">Cast:</h3>
-      {cast?.length > 0 ? (
-        <ul className="space-y-3">
-          {cast.map((actor) => (
-            <li key={actor.id} className="flex items-center space-x-3">
-              {actor.profile_path && (
-                <>
-                  <img
+    <div className="py-3 px-4 bg-gray-800 rounded-lg shadow-md">
+      <div
+        className="flex justify-between items-center cursor-pointer"
+        onClick={toggleAccordion}
+      >
+        <h3 className="text-white text-lg font-bold mb-2">Cast:</h3>
+        <Button
+          type="text"
+          icon={showAccordion ? <UpOutlined /> : <DownOutlined />}
+        />
+      </div>
+      {cast.length > 0 ? (
+        showAccordion && (
+          <ul className="space-y-4 h-60 overflow-y-auto pr-2">
+            {cast.map((actor) => (
+              <li key={actor.id} className="flex items-center space-x-4">
+                {actor.profile_path ? (
+                  <Avatar
                     src={IMG_CDN + actor.profile_path}
-                    alt={actor?.name}
-                    className="w-12 h-12 rounded-full"
+                    size={48}
+                    className="shadow-md"
                   />
-                  <span className="text-white font-sans">{actor?.name}</span>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
+                ) : (
+                  <Avatar
+                    icon={<UserOutlined />}
+                    size={48}
+                    className="bg-gray-600"
+                  />
+                )}
+                <span className="text-white font-medium">{actor.name}</span>
+              </li>
+            ))}
+          </ul>
+        )
       ) : (
-        <p className="text-white">Cast Information Not Available!</p>
+        <p className="text-white mt-4">Cast Information Not Available!</p>
       )}
     </div>
   );
