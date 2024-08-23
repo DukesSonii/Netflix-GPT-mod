@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { checkvalidator } from "../utils/UseValidator";
+import { checkvalidator } from "../utils/UseValidatorService";
 import { auth } from "../utils/FireBase";
 import {
   createUserWithEmailAndPassword,
@@ -26,25 +26,30 @@ const Login = () => {
   };
 
   const handelbuttonClick = () => {
-    const message = checkvalidator(email.current.value, password.current.value);
+    let message = null;
+
+    message = checkvalidator({
+      email: email.current.value,
+      password: password.current.value,
+      name: !IsSignin ? name.current.value : "",
+      isSignin: IsSignin,
+    });
+
     seterrormessage(message);
 
-    if (message) return; //i dont want program to go ahead just return from here in this function
+    if (message) return;
 
-    //sign in sign up logic
+    // Sign in / Sign up logic
     setloading(true);
     if (!IsSignin) {
-      //it is sign up form bc it is !IsSignin
-      //sign up logic
+      // Sign-up logic
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
         password.current.value
       )
         .then((userCredential) => {
-          // Signed up
           const user = userCredential.user;
-          console.log(user);
 
           updateProfile(user, {
             displayName: name.current.value,
@@ -68,24 +73,24 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          seterrormessage(errorCode + "-" + errorMessage);
+          seterrormessage(`${errorCode} - ${errorMessage}`);
         })
         .finally(() => setloading(false));
     } else {
-      //sign in logic
+      // Sign-in logic
       signInWithEmailAndPassword(
         auth,
         email.current.value,
         password.current.value
       )
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
+          console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          seterrormessage(errorCode + "-" + errorMessage);
+          seterrormessage(`${errorCode} - ${errorMessage}`);
         })
         .finally(() => setloading(false));
     }
@@ -122,14 +127,14 @@ const Login = () => {
           <input
             ref={email}
             type="text"
-            placeholder="Email Address"
+            placeholder="Email Id"
             className="p-2 sm:p-4 my-2 sm:my-4 w-full bg-gray-800 rounded-lg"
           />
           {!IsSignin && (
             <input
               ref={phone}
               type="text"
-              placeholder="Email Phone"
+              placeholder="Phone Number"
               className="p-2 sm:p-4 my-2 sm:my-4 w-full bg-gray-800 rounded-lg"
             />
           )}
