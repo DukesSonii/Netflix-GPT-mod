@@ -23,7 +23,8 @@ const useMovieGenres = (movieId) => {
       API_OPTIONS
     );
     const data = await res.json();
-    dispatch(addGenres(data.genres));
+
+    dispatch(addGenres(data));
   };
   return <div>useMovieGenres</div>;
 };

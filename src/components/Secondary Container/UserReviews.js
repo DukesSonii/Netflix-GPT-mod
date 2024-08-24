@@ -26,7 +26,7 @@ const UserReviews = () => {
   };
 
   return (
-    <div>
+    <div className="pl-4 pr-4 mt-2">
       <Button type="primary" onClick={showModal}>
         User Reviews
       </Button>

@@ -18,16 +18,15 @@ const PopularScreenshots = () => {
   const handleClick = () => {
     setshowImages(!showImages);
   };
-
   return (
-    <div>
-      <p className="text-white -mb-0  font-semibold mb-3">
+    <div className="pl-4 pr-4">
+      <p className="text-gray-400 text-base font-semibold mb-1">
         Popular Screenshots
       </p>
       <Button
         type="link"
         onClick={handleClick}
-        className={`mb-2 -ml-4 text-white text-sm underline`}
+        className="mb-2 -ml-4 text-gray-400 text-base underline"
       >
         {showImages ? "Hide Screenshots" : "Tap to view Screenshots"}
       </Button>

@@ -4,10 +4,8 @@ import Characters from "./Characters";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import PopularScreenshots from "./PopularScreenshots";
 import SimilarMovies from "./SimilarMovies";
+import OtherDetails from "./OtherDetails";
 import UserReviews from "./UserReviews";
-
-const { Text } = Typography;
-
 const ModalContent = ({
   isVisible,
   onCancel,
@@ -17,6 +15,7 @@ const ModalContent = ({
   cast,
   genres,
   onPosterClick,
+  category,
 }) => {
   const [showFullCast, setShowFullCast] = useState(false);
 
@@ -28,16 +27,20 @@ const ModalContent = ({
 
   return (
     <Modal
-      title={selectedMovie ? selectedMovie.title : "Movie Title"}
+      title={
+        <span className="text-white text-2xl font-bold">
+          {selectedMovie ? selectedMovie.title : "Movie Title"}
+        </span>
+      }
       onCancel={onCancel}
       onOk={onOk}
       visible={isVisible}
       className="custom-modal"
       style={{ top: 30, right: 150 }}
     >
-      <div className="p-4">
-        <div>
-          <Text className="text-white text-lg font-semibold">Trailer:</Text>
+      <div className="p-4 bg-black">
+        <div className="pl-4 pr-4">
+          <span className="text-white text-xl font-semibold">Trailer:</span>
           {trailerVideo ? (
             <iframe
               className="w-full h-64 mt-2 rounded-md mb-6"
@@ -46,22 +49,20 @@ const ModalContent = ({
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             ></iframe>
           ) : (
-            <p className="text-white mt-2">Sorry! Trailer not available</p>
+            <p className="text-white mt-2 text-base">
+              Sorry! Trailer not available
+            </p>
           )}
         </div>
 
         <br />
-        <div className="flex justify-between">
+        <div className="flex justify-between text-base pl-4 pr-4">
           <p>
-            <Text className="text-white text-sm font-semibold">
-              Release Date:{" "}
-            </Text>
-            <span className="text-white text-sm">
-              {selectedMovie?.release_date}
-            </span>
+            <span className="text-gray-400">Release Date: </span>
+            <span className="text-white">{selectedMovie?.release_date}</span>
           </p>
           <p>
-            <Text className="text-white text-sm font-semibold">Genres: </Text>
+            <span className="text-gray-400">Genres: </span>
             <span className="text-white">
               {genres?.length > 0
                 ? genres.map((genre) => genre.name).join(", ")
@@ -70,57 +71,58 @@ const ModalContent = ({
           </p>
         </div>
 
-        <hr className="border-t border-gray-600 opacity-30 my-2" />
-        <div className="flex justify-between items-center">
+        <hr className="border-t border-gray-600 opacity-30 my-4" />
+
+        <div className="flex justify-between items-center text-base pl-4 pr-4">
           <p>
-            <Text className="text-white text-sm font-semibold">
-              Popularity:{" "}
-            </Text>
-            <span className="text-white text-sm">
-              {selectedMovie?.popularity}
-            </span>
+            <span className="text-gray-400">Popularity: </span>
+            <span className="text-white">{selectedMovie?.popularity}</span>
           </p>
           <div className="flex items-center">
-            <span className="font-semibold mr-1">Cast:</span>
-            <span className="text-white text-sm">
+            <span className="text-gray-400 font-semibold mr-1">Cast:</span>
+            <span className="text-white">
               {initialCast?.map((actor) => actor.name).join(", ")}
             </span>
             {cast?.length > 3 && (
               <Button
                 type="link"
                 onClick={handleShowMore}
-                className="text-white text-sm underline"
+                className="text-white text-base underline -ml-1"
               >
                 {showFullCast ? "Show Less" : "More"}
               </Button>
             )}
           </div>
         </div>
-        <hr className="border-t border-gray-600 opacity-30 my-2" />
 
-        <p className="text-base">
-          <Text className="text-white text-sm font-semibold">
-            Description:{" "}
-          </Text>
-          <span className="text-white text-sm">{selectedMovie?.overview}</span>
+        <hr className="border-t border-gray-600 opacity-30 my-4" />
+
+        <p className="text-base pl-4 pr-4 mb-2">
+          <span className="text-gray-400">Description: </span>
+          <span className="text-white">{selectedMovie?.overview}</span>
         </p>
-        <p>
-          <Text className="text-white text-sm font-semibold">Adult: </Text>
-          <span className="text-white text-sm">
+        <p className="text-base pl-4 pr-4">
+          <span className="text-gray-400">Adult: </span>
+          <span className="text-white">
             {selectedMovie?.adult ? <CheckOutlined /> : <CloseOutlined />}
           </span>
         </p>
+
         {showFullCast && (
-          <div className="mt-2">
+          <div className="mt-4">
             <Characters cast={cast} />
           </div>
         )}
-        <hr className="border-t border-gray-600 opacity-30 my-2" />
+
+        <hr className="border-t border-gray-600 opacity-30 my-3" />
 
         <PopularScreenshots />
-        <hr className="border-t border-gray-600 opacity-30 my-2" />
+        <hr className="border-t border-gray-600 opacity-30 my-3" />
         <SimilarMovies onPosterClick={onPosterClick} />
         <UserReviews />
+        <hr className="border-t border-gray-600 opacity-30 mt-4" />
+
+        <OtherDetails category={category} />
       </div>
     </Modal>
   );

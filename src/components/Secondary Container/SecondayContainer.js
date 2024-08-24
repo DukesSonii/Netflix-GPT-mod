@@ -64,8 +64,9 @@ const SecondayContainer = () => {
           onCancel={handleCancel}
           onOk={handleOk}
           cast={cast}
-          genres={genres}
+          genres={genres?.genres}
           onPosterClick={showModal}
+          category={genres}
         />
       </div>
     </div>

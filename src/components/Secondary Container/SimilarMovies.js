@@ -25,12 +25,12 @@ const SimilarMovies = ({ onPosterClick }) => {
   };
 
   return (
-    <div className="mt-4">
-      <p className="text-white font-semibold">Similar Movies</p>
+    <div className="pl-4 pr-4">
+      <p className="text-gray-400 text-base font-semibold">Similar Movies</p>
       <Button
         type="link"
         onClick={handleClick}
-        className="mb-2 -ml-4 text-white text-sm underline"
+        className="mb-2 -ml-4 text-gray-400 text-base underline"
       >
         {showMovies ? "Hide Movies" : "Tap to view Similar Movies"}
       </Button>
