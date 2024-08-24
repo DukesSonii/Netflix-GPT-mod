@@ -55,12 +55,17 @@ const GptSearchBar = () => {
           e.preventDefault();
         }}
       >
-        <input
-          type="text"
-          ref={inputdata}
-          placeholder={lang[selectlang]?.gptSearchPlaceholder}
-          className="p-4 flex-grow bg-transparent text-white border-none focus:outline-none placeholder-gray-400"
-        />
+        <div className="relative group w-full">
+          <input
+            type="text"
+            ref={inputdata}
+            placeholder={lang[selectlang]?.gptSearchPlaceholder}
+            className="p-4 flex-grow bg-transparent text-white border-none focus:outline-none placeholder-gray-400 w-full"
+          />
+          <span className="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-black text-white text-sm p-2 rounded">
+            {lang[selectlang]?.hover}
+          </span>
+        </div>
         <button
           className="py-2 px-4 bg-red-600 text-white rounded-full hover:bg-red-800 transition-colors duration-300"
           onClick={gptsearchclick}
