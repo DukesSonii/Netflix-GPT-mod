@@ -117,12 +117,13 @@ const ModalContent = ({
         <hr className="border-t border-gray-600 opacity-30 my-3" />
 
         <PopularScreenshots />
-        <hr className="border-t border-gray-600 opacity-30 my-3" />
+        <hr className="border-t border-gray-600 opacity-30 my-2" />
         <SimilarMovies onPosterClick={onPosterClick} />
-        <UserReviews />
-        <hr className="border-t border-gray-600 opacity-30 mt-4" />
-
+        <hr className="border-t border-gray-600 opacity-30 mt-2" />
         <OtherDetails category={category} />
+        <hr className="border-t border-gray-600 opacity-30 mb-2" />
+
+        <UserReviews />
       </div>
     </Modal>
   );
