@@ -57,7 +57,8 @@ const GptMovieSugg = () => {
         onCancel={handleCancel}
         onOk={handleOk}
         cast={cast}
-        genres={genres}
+        genres={genres?.genres}
+        category={genres}
         onPosterClick={showModal}
       />
     </div>
