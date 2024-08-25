@@ -50,7 +50,7 @@ const OtherDetails = ({ category }) => {
         <span className="text-white">
           {category?.budget === 0
             ? "Not Disclosed"
-            : `$ ${category.budget?.toLocaleString()}`}
+            : `$${category.budget?.toLocaleString()}`}
         </span>
       </p>
       <p className="text-base">
@@ -58,7 +58,7 @@ const OtherDetails = ({ category }) => {
         <span className="text-white">
           {category?.revenue === 0
             ? "Not Disclosed"
-            : `$ ${category.revenue?.toLocaleString()}`}
+            : `$${category.revenue?.toLocaleString()}`}
         </span>
       </p>
 
