@@ -109,7 +109,7 @@ const ModalContent = ({
         </p>
 
         {showFullCast && (
-          <div className="mt-4">
+          <div className="mt-4 pl-4 pr-4 w-1/2">
             <Characters cast={cast} />
           </div>
         )}
