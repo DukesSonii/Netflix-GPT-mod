@@ -5,7 +5,7 @@ import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import PopularScreenshots from "./PopularScreenshots";
 import SimilarMovies from "./SimilarMovies";
 import OtherDetails from "./OtherDetails";
-import UserReviews from "./UserReviews";
+import UserReviews from "../Reviews/UserReviews";
 const ModalContent = ({
   isVisible,
   onCancel,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { IMG_CDN } from "../../utils/constants";
+import { IMG_CDN } from "../../../utils/constants";
 import { Button, Spin } from "antd";
 
 const SimilarMovies = ({ onPosterClick }) => {

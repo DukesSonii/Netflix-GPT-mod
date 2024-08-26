@@ -1,8 +1,7 @@
 import React from "react";
-import { IMDB_CDN } from "../../utils/constants";
-const OtherDetails = ({ category }) => {
-  console.log(category);
+import { IMDB_CDN } from "../../../utils/constants";
 
+const OtherDetails = ({ category }) => {
   if (!category) {
     return (
       <p className="text-white text-center text-base">No details available</p>

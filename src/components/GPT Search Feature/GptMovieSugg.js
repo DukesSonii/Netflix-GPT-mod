@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import MovieList from "../Secondary Container/MovieList";
 import useMovieCast from "../../Hooks/useMovieCast";
-import ModalContent from "../Secondary Container/ModalContent";
+import ModalContent from "../Secondary Container/Movie Modals/ModalContent";
 
 import useMovieTrailerforMov from "../../Hooks/useMovieTrailerforMov";
 import useMovieGenres from "../../Hooks/useMovieGenres";

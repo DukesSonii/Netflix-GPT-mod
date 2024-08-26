@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { IMG_CDN } from "../../utils/constants"; // Adjust the import based on your actual path
+import { IMG_CDN } from "../../../utils/constants"; // Adjust the import based on your actual path
 import { Button } from "antd";
 
 const PopularScreenshots = () => {

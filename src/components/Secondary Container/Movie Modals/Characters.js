@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IMG_CDN } from "../../utils/constants";
+import { IMG_CDN } from "../../../utils/constants";
 
 import { Avatar, Button } from "antd";
 import { UserOutlined, UpOutlined, DownOutlined } from "@ant-design/icons";
