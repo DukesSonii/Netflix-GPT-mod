@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import MovieList from "./MovieList";
 import { useSelector } from "react-redux";
-import useMovieCast from "../../Hooks/useMovieCast";
 import ModalContent from "./Movie Modals/ModalContent";
-
+import useMovieCast from "../../Hooks/useMovieCast";
 import useMovieTrailerforMov from "../../Hooks/useMovieTrailerforMov";
 import useMovieGenres from "../../Hooks/useMovieGenres";
 import useGetImages from "../../Hooks/useGetImages";
 import useSimilarMovies from "../../Hooks/useSimilarMovies";
 import useUserReviews from "../../Hooks/useUserReviews";
+import MovieListByChars from "./Characters List/MovieListByChars";
+import usePopularCast from "../../Hooks/usePopularCast";
+
+import { Spin } from "antd";
+import Shimmer from "../Shimmer";
+
 const SecondayContainer = () => {
   const movies = useSelector((store) => store.movie);
   const trailerVideo = useSelector((store) => store.movie.trailerForEachMovie);
@@ -16,6 +21,8 @@ const SecondayContainer = () => {
   const [selectedMovie, setselectedMovie] = useState(null);
   const cast = useSelector((store) => store.movie.charactersCast);
   const genres = useSelector((store) => store.movie?.genres);
+
+  const isLoading = usePopularCast();
 
   useGetImages(selectedMovie?.id);
   useMovieGenres(selectedMovie?.id);
@@ -57,6 +64,15 @@ const SecondayContainer = () => {
           movies={movies.upcomingMovie}
           onPosterClick={showModal}
         />
+
+        {isLoading ? (
+          <div className="flex justify-center items-center mt-10 ">
+            <Shimmer />
+          </div>
+        ) : (
+          <MovieListByChars onPosterClick={showModal} />
+        )}
+
         <ModalContent
           isVisible={isVisible}
           selectedMovie={selectedMovie}

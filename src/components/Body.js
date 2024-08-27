@@ -1,29 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import Login from "./Login";
 import Browse from "./Browse";
-import { RouterProvider } from "react-router-dom";
-import { createBrowserRouter } from "react-router-dom";
-
+import SearchResults from "./SearchResults";
 import Error from "./Error";
-const Body = () => {
-  const appRouter = createBrowserRouter([
-    {
-      path: "/",
-      element: <Login />,
-    },
-    {
-      path: "/browse",
-      element: <Browse />,
-    },
-    {
-      path: "/error",
-      element: <Error />,
-    },
-  ]);
 
+const Body = () => {
   return (
     <div>
-      <RouterProvider router={appRouter} />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/browse" element={<Browse />} />
+        <Route path="/searchresults/:query" element={<SearchResults />} />
+        <Route path="*" element={<Error />} /> {/* Wildcard route */}
+      </Routes>
     </div>
   );
 };

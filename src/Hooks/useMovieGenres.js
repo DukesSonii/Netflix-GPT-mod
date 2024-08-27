@@ -7,17 +7,11 @@ const useMovieGenres = (movieId) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (!movieId) return;
-
+    if (!movieId) return;
     fetchData();
   }, [movieId]);
 
   const fetchData = async () => {
-    // const res = await fetch(
-    //   `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
-    //   API_OPTIONS
-    // );
-
     const res = await fetch(
       `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
       API_OPTIONS
