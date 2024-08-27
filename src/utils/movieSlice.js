@@ -15,6 +15,7 @@ const movieSlice = createSlice({
     screenshots: null,
     similarSeries: null,
     userReviews: null,
+    popularCast: null,
   },
   reducers: {
     addNowPlayMovies: (state, action) => {
@@ -50,6 +51,9 @@ const movieSlice = createSlice({
     addUserReviews: (state, action) => {
       state.userReviews = action.payload;
     },
+    addPopularCast: (state, action) => {
+      state.popularCast = action.payload;
+    },
   },
 });
 
@@ -65,6 +69,7 @@ export const {
   addScreenshots,
   addSimilarMovies,
   addUserReviews,
+  addPopularCast,
 } = movieSlice.actions;
 
 export default movieSlice.reducer;

@@ -7,7 +7,7 @@ const MovieCard = ({ posterpath, popular }) => {
     <div className="w-28 md:w-44 flex-shrink-0 relative">
       <img src={IMG_CDN + posterpath} alt="Movie Card" className="rounded-md" />
       <h2 className="text-white">{popular}</h2>
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-md"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-gray-700 via-transparent to-transparent"></div>
     </div>
   );
 };
