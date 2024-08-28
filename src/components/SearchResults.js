@@ -18,9 +18,10 @@ const SearchResults = () => {
       setError(null);
       try {
         const res = await fetch(
-          `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
+          `https://api.themoviedb.org/3/search/multi?query=${query}&include_adult=false&language=en-US&page=1`,
           API_OPTIONS
         );
+
         if (!res.ok) {
           throw new Error("Failed to fetch movies");
         }
@@ -83,7 +84,9 @@ const SearchResults = () => {
                   alt={movie.title}
                   className="w-64 h-auto mb-4"
                 />
-                <h3 className="text-white text-xl mb-2">{movie.title}</h3>
+                <h3 className="text-white text-xl mb-2">
+                  {movie.title || movie?.original_name}
+                </h3>
               </div>
             ) : null
           )}

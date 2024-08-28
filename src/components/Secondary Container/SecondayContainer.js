@@ -12,7 +12,6 @@ import MovieListByChars from "./Characters List/MovieListByChars";
 import usePopularCast from "../../Hooks/usePopularCast";
 
 import { Spin } from "antd";
-import Shimmer from "../Shimmer";
 
 const SecondayContainer = () => {
   const movies = useSelector((store) => store.movie);
@@ -66,8 +65,8 @@ const SecondayContainer = () => {
         />
 
         {isLoading ? (
-          <div className="flex justify-center items-center mt-10 ">
-            <Shimmer />
+          <div className="flex justify-center items-center mt-10 bg-black">
+            <Spin size="large" />
           </div>
         ) : (
           <MovieListByChars onPosterClick={showModal} />

@@ -1,16 +1,13 @@
 import React, { useRef, useState } from "react";
 import { Button, Modal } from "antd";
-
-import MovieCard from "./MovieCard";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { IMG_CDN } from "../../utils/constants";
 import { Typography } from "antd";
-import "./MovieList.css";
 import { useSelector } from "react-redux";
-
+import ShowsCard from "./ShowsCard";
 const { Text } = Typography;
 
-const MovieList = ({ title, movies, onPosterClick }) => {
+const ShowsList = ({ title, shows }) => {
   const scrollRef = useRef(null);
 
   const leftScroll = () => {
@@ -26,21 +23,21 @@ const MovieList = ({ title, movies, onPosterClick }) => {
   };
 
   return (
-    <div className="px-5 relative">
+    <div className="px-5 relative ">
       <h1 className="text-lg md:text-2xl py-2 font-sans mb-4 text-white">
         {title}
       </h1>
-      <h1 className="text-white">{movies?.title}</h1>
+      <h1 className="text-white">{shows?.title}</h1>
       <div
-        className="flex space-x-3 overflow-x-scroll cursor-pointer"
+        className="flex space-x-3 overflow-x-scroll"
         style={{
           scrollbarWidth: "none",
         }}
         ref={scrollRef}
       >
-        {movies?.map((movie) => (
-          <div key={movie.id} onClick={() => onPosterClick(movie)}>
-            <MovieCard key={movie.id} posterpath={movie?.poster_path} />
+        {shows?.map((movie) => (
+          <div key={movie.id}>
+            <ShowsCard key={movie.id} posterpath={movie?.poster_path} />
           </div>
         ))}
       </div>
@@ -71,4 +68,4 @@ const MovieList = ({ title, movies, onPosterClick }) => {
   );
 };
 
-export default MovieList;
+export default ShowsList;

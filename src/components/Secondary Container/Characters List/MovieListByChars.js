@@ -37,7 +37,7 @@ const MovieListByChars = ({ onPosterClick }) => {
   };
 
   return (
-    <div className="pl-4 relative">
+    <div className="px-4 relative">
       <h1 className="text-lg md:text-2xl py-2 mt-1 mb-4 font-sans text-white">
         Popular Characters
       </h1>
