@@ -8,7 +8,6 @@ function App() {
   return (
     <Provider store={appStore}>
       <Router>
-        <Header />
         <Body />
       </Router>
     </Provider>

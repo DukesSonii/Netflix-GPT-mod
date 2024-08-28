@@ -7,6 +7,8 @@ const TVShowsSlice = createSlice({
     todayShows: null,
     upcomingShows: null,
     popularShows: null,
+    showTrailer: null,
+    showDetails: null,
   },
 
   reducers: {
@@ -22,6 +24,12 @@ const TVShowsSlice = createSlice({
     addPopularShows: (state, action) => {
       state.popularShows = action.payload;
     },
+    addShowsTrailer: (state, action) => {
+      state.showTrailer = action.payload;
+    },
+    addDetailsAbtShow: (state, action) => {
+      state.showDetails = action.payload;
+    },
   },
 });
 
@@ -30,5 +38,7 @@ export const {
   addTodayShows,
   addUpcomingShows,
   addPopularShows,
+  addShowsTrailer,
+  addDetailsAbtShow,
 } = TVShowsSlice.actions;
 export default TVShowsSlice.reducer;

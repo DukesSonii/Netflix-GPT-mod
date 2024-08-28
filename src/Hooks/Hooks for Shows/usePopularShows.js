@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { API_OPTIONS } from "../utils/constants";
+import { API_OPTIONS } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addPopularShows,
   addTrendingShows,
   addUpcomingShows,
-} from "../utils/TVShowsSlice";
+} from "../../utils/TVShowsSlice";
 const usePopularShows = () => {
   const popular = useSelector((store) => store?.show?.popularShows);
 
@@ -21,7 +21,6 @@ const usePopularShows = () => {
     );
 
     const json = await data.json();
-    console.log(json);
 
     dispatch(addPopularShows(json.results));
   };
