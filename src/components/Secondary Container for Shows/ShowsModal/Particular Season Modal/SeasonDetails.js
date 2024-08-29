@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import EpisodeModal from "./EpisodeModal";
 import { useSelector } from "react-redux";
-import useDetailsAboutSeasson from "../../../Hooks/Hooks for Shows/useDetailsAboutSeasson";
-import useImagesForSeasons from "../../../Hooks/Hooks for Shows/useImageForSeasons";
-import useTrailerforSeason from "../../../Hooks/Hooks for Shows/useTrailerforSeason";
+import useDetailsAboutSeasson from "../../../../Hooks/Hooks for Shows/useDetailsAboutSeasson";
+import useImagesForSeasons from "../../../../Hooks/Hooks for Shows/useImageForSeasons";
+import useTrailerforSeason from "../../../../Hooks/Hooks for Shows/useTrailerforSeason";
 const SeasonDetails = ({ basicdetails }) => {
   const [isEpisodeModalVisible, setIsEpisodeModalVisible] = useState(false);
   const [selectedSeason, setSelectedSeason] = useState(null);

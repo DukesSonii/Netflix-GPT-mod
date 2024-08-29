@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import "./modal.css";
 import OtherDetailsforShows from "./OtherDetailsforShows";
-import SeasonDetails from "./SeasonDetails";
+import SeasonDetails from "./Particular Season Modal/SeasonDetails";
 import CharactersCast from "./CharactersCast";
 import SimilarShows from "./SimilarShows";
 const ModalShows = ({
