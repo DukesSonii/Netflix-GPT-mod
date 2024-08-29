@@ -10,7 +10,6 @@ const SeasonDetails = ({ basicdetails }) => {
   const seasonDetails = useSelector((store) => store.show.seasondetails);
   const seasonImages = useSelector((store) => store.show.seasonsimages);
   const seasonTrailer = useSelector((store) => store?.show?.seasontrailer);
-  console.log(seasonTrailer);
 
   const openEpisodeModal = (season) => {
     setSelectedSeason(season);
@@ -60,6 +59,8 @@ const SeasonDetails = ({ basicdetails }) => {
         seasonDetails={seasonDetails}
         seasonImages={seasonImages}
         seasonTrailer={seasonTrailer}
+        basicdetails={basicdetails}
+        selectedSeason={selectedSeason}
       />
     </div>
   );

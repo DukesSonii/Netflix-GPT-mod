@@ -14,6 +14,7 @@ const TVShowsSlice = createSlice({
     seasondetails: null,
     seasonsimages: null,
     seasontrailer: null,
+    episodeinfo: null,
   },
 
   reducers: {
@@ -50,6 +51,9 @@ const TVShowsSlice = createSlice({
     addSeasonTrailer: (state, action) => {
       state.seasontrailer = action.payload;
     },
+    addEpisodeInfo: (state, action) => {
+      state.episodeinfo = action.payload;
+    },
   },
 });
 
@@ -65,5 +69,6 @@ export const {
   addSeasonDetails,
   addSeasonImages,
   addSeasonTrailer,
+  addEpisodeInfo,
 } = TVShowsSlice.actions;
 export default TVShowsSlice.reducer;
