@@ -17,7 +17,7 @@ const EpisodeModal = ({
       onOk={onOk}
       onCancel={onCancel}
       className="custom-modal"
-      style={{ top: 30, right: 150 }}
+      style={{ top: 0, right: 170 }}
     >
       <div className="p-4 bg-black">
         <div className="pl-4 pr-4">
