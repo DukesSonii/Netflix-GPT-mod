@@ -7,6 +7,13 @@ const TVShowsSlice = createSlice({
     todayShows: null,
     upcomingShows: null,
     popularShows: null,
+    showTrailer: null,
+    showDetails: null,
+    cast: null,
+    similarShows: null,
+    seasondetails: null,
+    seasonsimages: null,
+    seasontrailer: null,
   },
 
   reducers: {
@@ -22,6 +29,27 @@ const TVShowsSlice = createSlice({
     addPopularShows: (state, action) => {
       state.popularShows = action.payload;
     },
+    addShowsTrailer: (state, action) => {
+      state.showTrailer = action.payload;
+    },
+    addDetailsAbtShow: (state, action) => {
+      state.showDetails = action.payload;
+    },
+    addCast: (state, action) => {
+      state.cast = action.payload;
+    },
+    addSimilarShows: (state, action) => {
+      state.similarShows = action.payload;
+    },
+    addSeasonDetails: (state, action) => {
+      state.seasondetails = action.payload;
+    },
+    addSeasonImages: (state, action) => {
+      state.seasonsimages = action.payload;
+    },
+    addSeasonTrailer: (state, action) => {
+      state.seasontrailer = action.payload;
+    },
   },
 });
 
@@ -30,5 +58,12 @@ export const {
   addTodayShows,
   addUpcomingShows,
   addPopularShows,
+  addShowsTrailer,
+  addDetailsAbtShow,
+  addCast,
+  addSimilarShows,
+  addSeasonDetails,
+  addSeasonImages,
+  addSeasonTrailer,
 } = TVShowsSlice.actions;
 export default TVShowsSlice.reducer;

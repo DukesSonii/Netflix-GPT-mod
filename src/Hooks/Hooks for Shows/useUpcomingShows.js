@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { API_OPTIONS } from "../utils/constants";
+import { API_OPTIONS } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addTrendingShows, addUpcomingShows } from "../utils/TVShowsSlice";
+import { addTrendingShows, addUpcomingShows } from "../../utils/TVShowsSlice";
 const useUpcomingShows = () => {
   const upcomingShows = useSelector((store) => store?.show?.upcomingShows);
 
@@ -17,7 +17,6 @@ const useUpcomingShows = () => {
     );
 
     const json = await data.json();
-    console.log(json);
 
     dispatch(addUpcomingShows(json.results));
   };

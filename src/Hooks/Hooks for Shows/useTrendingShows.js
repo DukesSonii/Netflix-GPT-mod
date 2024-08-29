@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { API_OPTIONS } from "../utils/constants";
+import { API_OPTIONS } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addTrendingShows } from "../utils/TVShowsSlice";
+import { addTrendingShows } from "../../utils/TVShowsSlice";
 const useTrendingShows = () => {
   const trendingShows = useSelector((store) => store?.show?.trendingShows);
 
@@ -17,7 +17,6 @@ const useTrendingShows = () => {
     );
 
     const json = await data.json();
-    console.log(json);
 
     dispatch(addTrendingShows(json.results));
   };

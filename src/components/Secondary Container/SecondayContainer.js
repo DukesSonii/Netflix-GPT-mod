@@ -29,6 +29,7 @@ const SecondayContainer = () => {
   useMovieTrailerforMov(selectedMovie?.id);
   useSimilarMovies(selectedMovie?.id);
   useUserReviews(selectedMovie?.id);
+
   const handleOk = () => {
     setisisVisible(false);
   };
@@ -42,7 +43,7 @@ const SecondayContainer = () => {
   };
   return (
     <div className="bg-black">
-      <div className="relative mt-0 md:-mt-64 z-20 pl-1 md:pl-6">
+      <div className="relative mt-0 md:-mt-56 z-20 pl-1 md:pl-6">
         <MovieList
           title={"Now Playing"}
           movies={movies.nowPlayMovie}

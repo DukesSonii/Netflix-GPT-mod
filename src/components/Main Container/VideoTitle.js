@@ -2,7 +2,7 @@ import React from "react";
 import { CaretRightOutlined } from "@ant-design/icons";
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className="w-screen aspect-video pt-[20%] px-6 md: px-24 absolute text-white bg-gradient-to-b from-black pointer-events-none">
+    <div className="w-screen aspect-video pt-[20%] px-6 md:px-24 absolute text-white bg-gradient-to-b from-black pointer-events-none">
       <h1 className="text-2xl md:text-6xl font-bold mb-3 md:mb-0">{title}</h1>
       <p className="hidden md:inline-block py-6 text-lg w-1/4 font-semibold">
         {overview}
