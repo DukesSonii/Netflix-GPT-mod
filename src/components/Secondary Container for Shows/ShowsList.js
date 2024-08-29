@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import ShowsCard from "./ShowsCard";
 const { Text } = Typography;
 
-const ShowsList = ({ title, shows }) => {
+const ShowsList = ({ title, shows, onPosterClick }) => {
   const scrollRef = useRef(null);
 
   const leftScroll = () => {
@@ -36,7 +36,11 @@ const ShowsList = ({ title, shows }) => {
         ref={scrollRef}
       >
         {shows?.map((movie) => (
-          <div key={movie.id}>
+          <div
+            key={movie.id}
+            className="cursor-pointer"
+            onClick={() => onPosterClick(movie)}
+          >
             <ShowsCard key={movie.id} posterpath={movie?.poster_path} />
           </div>
         ))}

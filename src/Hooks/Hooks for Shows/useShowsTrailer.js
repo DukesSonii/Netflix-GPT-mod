@@ -24,7 +24,7 @@ const useShowsTrailer = (showId) => {
 
       const filterlist = results.filter((mov) => mov.type === "Trailer");
 
-      const trailer = filterlist.length ? filterlist[0] : results[0];
+      const trailer = filterlist.length ? filterlist[0] : results[1];
       dispatch(addShowsTrailer(trailer));
     } catch (error) {
       console.error("Failed to fetch movie trailer:", error);

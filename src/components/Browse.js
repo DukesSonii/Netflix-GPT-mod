@@ -13,9 +13,8 @@ import ShowsContainer from "./Secondary Container for Shows/ShowsContainer";
 import useLatestShows from "../Hooks/Hooks for Shows/useLatestShows";
 import useUpcomingShows from "../Hooks/Hooks for Shows/useUpcomingShows";
 import usePopularShows from "../Hooks/Hooks for Shows/usePopularShows";
-import { Switch } from "antd";
 const Browse = () => {
-  const [isMovies, setIsMovies] = useState(true); // State to track toggle
+  const [isMovieMode, setIsMovieMode] = useState(true);
 
   const showGptSearchVal = useSelector((store) => store.gpt.showGPTSearch);
 
@@ -35,25 +34,29 @@ const Browse = () => {
       ) : (
         <>
           <MainContainer />
-          <div className="absolute ml-[90%] -mt-80">
-            <Switch
-              checkedChildren={<span style={{ fontSize: "16px" }}>Movies</span>}
-              unCheckedChildren={
-                <span style={{ fontSize: "16px" }}>Series</span>
-              }
-              checked={isMovies}
-              onChange={() => setIsMovies(!isMovies)}
-              style={{
-                width: "80px",
-                height: "25px",
-                borderRadius: "20px",
-                backgroundColor: isMovies ? "#1d72b8" : "#4b4b4b",
-                margin: 0,
-                paddingBottom: 2,
-              }}
-            />
+          <div className="absolute ml-[82%] p-1 w-60  -mt-80 bg-gray-200 rounded-full">
+            <button
+              className={`${
+                isMovieMode
+                  ? "bg-green-600 text-white"
+                  : "bg-transparent text-black"
+              } rounded-full w-1/2 py-2 text-center`}
+              onClick={() => setIsMovieMode(true)}
+            >
+              Watch Movies
+            </button>
+            <button
+              className={`${
+                !isMovieMode
+                  ? "bg-green-600  text-white"
+                  : "bg-transparent text-black"
+              } rounded-full w-1/2 py-2 text-center`}
+              onClick={() => setIsMovieMode(false)}
+            >
+              Watch Series
+            </button>
           </div>
-          {isMovies ? <SecondayContainer /> : <ShowsContainer />}
+          {isMovieMode ? <SecondayContainer /> : <ShowsContainer />}
         </>
       )}
     </div>

@@ -13,7 +13,6 @@ const SearchResults = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      console.log(query);
 
       setError(null);
       try {
