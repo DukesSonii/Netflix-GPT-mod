@@ -18,6 +18,8 @@ const ModalShows = ({
   const [showFullCast, setShowFullCast] = useState(false);
 
   const initialCast = showcast?.slice(0, 3);
+  const fullCast = showcast?.slice(3, 15);
+
   const handleShowMore = () => {
     setShowFullCast(!showFullCast);
   };
@@ -80,6 +82,12 @@ const ModalShows = ({
             <span className="text-gray-400">Cast: </span>
             <span className="text-white">
               {initialCast?.map((actor) => actor.name).join(", ")}
+              {showFullCast && (
+                <>
+                  {fullCast?.length > 0 && ", "}
+                  {fullCast?.map((actor) => actor.name).join(", ")}
+                </>
+              )}
             </span>
             {showcast?.length > 3 && (
               <Button
