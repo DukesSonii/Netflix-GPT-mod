@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import "./modal.css";
 import OtherDetailsforShows from "./OtherDetailsforShows";
-import SeasonDetails from "./SeasonDetails";
+import SeasonDetails from "./Particular Season Modal/SeasonDetails";
 import CharactersCast from "./CharactersCast";
 import SimilarShows from "./SimilarShows";
 const ModalShows = ({
@@ -18,6 +18,8 @@ const ModalShows = ({
   const [showFullCast, setShowFullCast] = useState(false);
 
   const initialCast = showcast?.slice(0, 3);
+  const fullCast = showcast?.slice(3, 15);
+
   const handleShowMore = () => {
     setShowFullCast(!showFullCast);
   };
@@ -29,7 +31,7 @@ const ModalShows = ({
         onOk={onOk}
         onCancel={onCancel}
         className="custom-modal"
-        style={{ top: 30, right: 150 }}
+        style={{ top: 0, right: 150 }}
       >
         <div className="p-4 bg-black">
           <div className="pl-4 pr-4">
@@ -80,6 +82,12 @@ const ModalShows = ({
             <span className="text-gray-400">Cast: </span>
             <span className="text-white">
               {initialCast?.map((actor) => actor.name).join(", ")}
+              {showFullCast && (
+                <>
+                  {fullCast?.length > 0 && ", "}
+                  {fullCast?.map((actor) => actor.name).join(", ")}
+                </>
+              )}
             </span>
             {showcast?.length > 3 && (
               <Button

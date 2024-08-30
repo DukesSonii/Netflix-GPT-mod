@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import EpisodeModal from "./EpisodeModal";
 import { useSelector } from "react-redux";
-import useDetailsAboutSeasson from "../../../Hooks/Hooks for Shows/useDetailsAboutSeasson";
-import useImagesForSeasons from "../../../Hooks/Hooks for Shows/useImageForSeasons";
-import useTrailerforSeason from "../../../Hooks/Hooks for Shows/useTrailerforSeason";
+import useDetailsAboutSeasson from "../../../../Hooks/Hooks for Shows/useDetailsAboutSeasson";
+import useImagesForSeasons from "../../../../Hooks/Hooks for Shows/useImageForSeasons";
+import useTrailerforSeason from "../../../../Hooks/Hooks for Shows/useTrailerforSeason";
+import useCastforParticularSeason from "../../../../Hooks/Hooks for Shows/useCastforParticularSeason";
 const SeasonDetails = ({ basicdetails }) => {
   const [isEpisodeModalVisible, setIsEpisodeModalVisible] = useState(false);
   const [selectedSeason, setSelectedSeason] = useState(null);
   const seasonDetails = useSelector((store) => store.show.seasondetails);
   const seasonImages = useSelector((store) => store.show.seasonsimages);
   const seasonTrailer = useSelector((store) => store?.show?.seasontrailer);
-  console.log(seasonTrailer);
+  const castSeason = useSelector((store) => store?.show?.castforSeason);
 
   const openEpisodeModal = (season) => {
     setSelectedSeason(season);
@@ -24,6 +25,7 @@ const SeasonDetails = ({ basicdetails }) => {
   useDetailsAboutSeasson(basicdetails?.id, selectedSeason?.season_number);
   useImagesForSeasons(basicdetails?.id, selectedSeason?.season_number);
   useTrailerforSeason(basicdetails?.id, selectedSeason?.season_number);
+  useCastforParticularSeason(basicdetails?.id, selectedSeason?.season_number);
   return (
     <div className="mt-4 px-4">
       {basicdetails?.seasons?.map((season, index) => (
@@ -60,6 +62,9 @@ const SeasonDetails = ({ basicdetails }) => {
         seasonDetails={seasonDetails}
         seasonImages={seasonImages}
         seasonTrailer={seasonTrailer}
+        basicdetails={basicdetails}
+        selectedSeason={selectedSeason}
+        castSeason={castSeason}
       />
     </div>
   );

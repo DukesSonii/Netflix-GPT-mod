@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "antd";
-import { IMG_CDN } from "../../../utils/constants";
+import { IMG_CDN } from "../../../../utils/constants";
 
 const PopularScreenshots = ({ seasonImages }) => {
   const [showImages, setshowImages] = useState(false);
