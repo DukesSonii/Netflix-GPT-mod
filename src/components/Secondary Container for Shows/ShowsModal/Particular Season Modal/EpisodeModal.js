@@ -3,6 +3,7 @@ import { Modal } from "antd";
 import PopularScreenshots from "./PopularScreenshots";
 import useParticularEpisode from "../../../../Hooks/Hooks for Shows/useParticularEpisode";
 import { useSelector } from "react-redux";
+import { UpOutlined, DownOutlined } from "@ant-design/icons";
 
 const EpisodeModal = ({
   isVisible,
@@ -16,7 +17,6 @@ const EpisodeModal = ({
 }) => {
   const [activeAccordion, setActiveAccordion] = useState(null); // Track the open accordion
   const getEpisode = useSelector((store) => store?.show?.episodeinfo);
-  console.log(getEpisode);
 
   useParticularEpisode(
     basicdetails?.id,
@@ -84,23 +84,34 @@ const EpisodeModal = ({
                   </p>
                 </div>
                 <span className="text-white">
-                  {activeAccordion === episode.episode_number ? "⬇️" : "⬆️"}
+                  {activeAccordion === episode.episode_number ? (
+                    <DownOutlined />
+                  ) : (
+                    <UpOutlined />
+                  )}
                 </span>
               </div>
 
-              {activeAccordion === episode.episode_number &&
-                getEpisode?.length > 0 && (
-                  <iframe
-                    width="100%"
-                    height="315"
-                    className="mt-4 rounded-md"
-                    src={`https://www.youtube.com/embed/${getEpisode[0]?.key}?&autoplay=1&mute=1`}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  ></iframe>
-                )}
+              {activeAccordion === episode.episode_number && (
+                <div className="mt-4">
+                  {getEpisode?.length > 0 ? (
+                    <iframe
+                      width="100%"
+                      height="315"
+                      className="rounded-md"
+                      src={`https://www.youtube.com/embed/${getEpisode[0]?.key}?&autoplay=1&mute=1`}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <p className="text-white mt-2 text-base">
+                      Sorry! No trailer available for this episode.
+                    </p>
+                  )}
+                </div>
+              )}
             </div>
           ))}
 
