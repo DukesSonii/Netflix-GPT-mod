@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal } from "antd";
+import { Modal, Button } from "antd";
 import PopularScreenshots from "./PopularScreenshots";
 import useParticularEpisode from "../../../../Hooks/Hooks for Shows/useParticularEpisode";
 import { useSelector } from "react-redux";
@@ -14,9 +14,11 @@ const EpisodeModal = ({
   seasonTrailer,
   basicdetails,
   selectedSeason,
+  castSeason,
 }) => {
-  const [activeAccordion, setActiveAccordion] = useState(null); // Track the open accordion
+  const [activeAccordion, setActiveAccordion] = useState(null);
   const getEpisode = useSelector((store) => store?.show?.episodeinfo);
+  const [showFullCast, setShowFullCast] = useState(false);
 
   useParticularEpisode(
     basicdetails?.id,
@@ -28,6 +30,13 @@ const EpisodeModal = ({
     setActiveAccordion(
       activeAccordion === episodeNumber ? null : episodeNumber
     );
+  };
+
+  const initialCast = castSeason?.slice(0, 3);
+  const fullCast = castSeason?.slice(3);
+
+  const handleShowMore = () => {
+    setShowFullCast(!showFullCast);
   };
 
   return (
@@ -116,6 +125,27 @@ const EpisodeModal = ({
           ))}
 
           <PopularScreenshots seasonImages={seasonImages} />
+          <div className="px-4 text-white mt-2">
+            <span className="text-gray-400">Cast: </span>
+            <span className="text-white">
+              {initialCast?.map((actor) => actor.name).join(", ")}
+              {showFullCast && (
+                <>
+                  {fullCast?.length > 0 && ", "}
+                  {fullCast?.map((actor) => actor.name).join(", ")}
+                </>
+              )}
+            </span>
+            {castSeason?.length > 3 && (
+              <Button
+                type="link"
+                onClick={handleShowMore}
+                className="text-white text-base underline -ml-1"
+              >
+                {showFullCast ? "Show Less" : "More"}
+              </Button>
+            )}
+          </div>
         </div>
       </Modal>
     </div>

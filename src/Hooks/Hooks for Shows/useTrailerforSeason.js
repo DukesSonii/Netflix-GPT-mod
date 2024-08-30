@@ -20,7 +20,6 @@ const useTrailerforSeason = (series_id, season_num) => {
     );
     const json = await res.json();
     const results = json?.results || [];
-    console.log(results);
 
     const filterlist = results?.filter(
       (res) =>
