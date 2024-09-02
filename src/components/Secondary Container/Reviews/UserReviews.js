@@ -40,41 +40,47 @@ const UserReviews = () => {
         className="modal-css "
       >
         <div className="overflow-y-auto max-h-[500px] p-4 text-white">
-          {reviews?.map((review) => {
-            const { author, content, id, created_at } = review;
-            const { rating, username } = review.author_details;
-            const isExpanded = expandedReviewId === id;
+          {reviews?.length ? (
+            reviews?.map((review) => {
+              const { author, content, id, created_at } = review;
+              const { rating, username } = review.author_details;
+              const isExpanded = expandedReviewId === id;
 
-            return (
-              <div key={id} className="mb-4 p-4 bg-gray-800 rounded-lg">
-                <div className="flex items-center mb-2">
-                  <UserOutlined className="text-2xl mr-2" />
-                  <div>
-                    <p className="text-lg font-semibold">{author}</p>
-                    <p className="text-gray-400">@{username}</p>
+              return (
+                <div key={id} className="mb-4 p-4 bg-gray-800 rounded-lg">
+                  <div className="flex items-center mb-2">
+                    <UserOutlined className="text-2xl mr-2" />
+                    <div>
+                      <p className="text-lg font-semibold">{author}</p>
+                      <p className="text-gray-400">@{username}</p>
+                    </div>
                   </div>
+                  <div className="mb-2">
+                    <span className="text-yellow-400">⭐ {rating}/10</span>
+                  </div>
+                  <p className="mb-2">
+                    {isExpanded ? content : content.substring(0, 100) + "..."}
+                  </p>
+                  {content.length > 100 && (
+                    <Button
+                      type="link"
+                      onClick={() => toggleReview(id)}
+                      className="p-0 text-blue-400"
+                    >
+                      {isExpanded ? "Show Less" : "More"}
+                    </Button>
+                  )}
+                  <p className="text-gray-400 text-sm font-semibold">
+                    {new Date(created_at).toLocaleString()}
+                  </p>
                 </div>
-                <div className="mb-2">
-                  <span className="text-yellow-400">⭐ {rating}/10</span>
-                </div>
-                <p className="mb-2">
-                  {isExpanded ? content : content.substring(0, 100) + "..."}
-                </p>
-                {content.length > 100 && (
-                  <Button
-                    type="link"
-                    onClick={() => toggleReview(id)}
-                    className="p-0 text-blue-400"
-                  >
-                    {isExpanded ? "Show Less" : "More"}
-                  </Button>
-                )}
-                <p className="text-gray-400 text-sm font-semibold">
-                  {new Date(created_at).toLocaleString()}
-                </p>
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <p className="text-white text-xl font-custom italic leading-relaxed tracking-wide">
+              No Reviews available for this movie
+            </p>
+          )}
         </div>
       </Modal>
     </div>
