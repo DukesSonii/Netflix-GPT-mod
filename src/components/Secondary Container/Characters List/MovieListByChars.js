@@ -5,11 +5,18 @@ import { Button, Modal } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import CharactersList from "./CharactersList";
 import ModalData from "./ModalData";
+import useMovieforPerson from "../../../Hooks/useMovieforPerson";
 const MovieListByChars = ({ onPosterClick }) => {
   const scrollRef = useRef(null);
+
   const [isModalVisible, setisModalVisible] = useState(false);
+  const [selectedPersonId, setSelectedPersonId] = useState(null);
   const [showCharData, setshowCharData] = useState(null);
+
   const characters = useSelector((store) => store?.movie?.popularCast);
+  console.log(characters);
+
+  const peopleShows = useSelector((store) => store?.movie?.personmovie);
 
   const leftScroll = () => {
     if (scrollRef.current) {
@@ -34,7 +41,10 @@ const MovieListByChars = ({ onPosterClick }) => {
   const showModal = (char) => {
     setshowCharData(char);
     setisModalVisible(true);
+    setSelectedPersonId(char?.id);
   };
+
+  useMovieforPerson(selectedPersonId);
 
   return (
     <div className="px-4 relative">
@@ -79,6 +89,7 @@ const MovieListByChars = ({ onPosterClick }) => {
       </Button>
       <ModalData
         showCharData={showCharData}
+        peopleShows={peopleShows}
         title={showCharData?.original_name}
         visible={isModalVisible}
         onCancel={handleCancel}
