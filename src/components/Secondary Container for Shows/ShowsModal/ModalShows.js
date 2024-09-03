@@ -6,6 +6,7 @@ import SeasonDetails from "./Particular Season Modal/SeasonDetails";
 import CharactersCast from "./CharactersCast";
 import SimilarShows from "./SimilarShows";
 import UserReviewsforShows from "./UserReviewsforShows";
+import Popularkeyords from "./Popularkeyords";
 const ModalShows = ({
   isVisible,
   onOk,
@@ -50,17 +51,20 @@ const ModalShows = ({
           </div>
           <div className="flex justify-between text-base pl-4 pr-4 text-white mt-4">
             <p>
-              <span className="text-gray-400">
-                First Episode Release Date:{" "}
-              </span>
+              <span className="text-gray-400">Release Date: </span>
               {basicdetails?.first_air_date}
             </p>
             <p>{basicdetails?.seasons.length} Seasons</p>
+            {selectedShow?.adult && (
+              <span className="border bottom-1 px-2">A</span>
+            )}
             <p>
               <span className="text-gray-400">Last Episode Release Date: </span>
               {basicdetails?.last_air_date}
             </p>
           </div>
+          <hr className="border-t border-gray-600 opacity-30 my-2" />
+          <Popularkeyords />
           <hr className="border-t border-gray-600 opacity-30 my-2" />
           <div className="flex justify-between text-base px-4 text-white">
             <p>

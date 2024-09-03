@@ -7,6 +7,7 @@ import useDetailsforShow from "../../Hooks/Hooks for Shows/useDetailsforShow";
 import useCastforShows from "../../Hooks/Hooks for Shows/useCastforShows";
 import useSimilarShows from "../../Hooks/Hooks for Shows/useSimilarShows";
 import useUserReviewsforShows from "../../Hooks/Hooks for Shows/useUserReviewsforShows";
+import useKeywords from "../../Hooks/Hooks for Shows/useKeywords";
 const ShowsContainer = () => {
   const shows = useSelector((store) => store.show);
   const [isvisible, setisvisible] = useState(false);
@@ -34,6 +35,7 @@ const ShowsContainer = () => {
   useCastforShows(selectedShow?.id);
   useSimilarShows(selectedShow?.id);
   useUserReviewsforShows(selectedShow?.id);
+  useKeywords(selectedShow?.id);
 
   return (
     <div className="bg-black pl-4 mt-6">

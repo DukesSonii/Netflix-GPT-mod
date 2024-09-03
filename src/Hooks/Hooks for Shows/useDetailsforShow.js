@@ -18,6 +18,7 @@ const useDetailsforShow = (showId) => {
     );
 
     const data = await res.json();
+
     dispatch(addDetailsAbtShow(data));
   };
   return <div>useMovieGenres</div>;

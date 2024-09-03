@@ -6,7 +6,6 @@ import "./Reviews.css";
 
 const UserReviewsforShows = () => {
   const reviews = useSelector((store) => store.show.userReviewSeason);
-  console.log(reviews);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [expandedReviewId, setExpandedReviewId] = useState(null);

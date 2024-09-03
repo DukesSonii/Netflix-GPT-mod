@@ -17,6 +17,7 @@ const TVShowsSlice = createSlice({
     episodeinfo: null,
     castforSeason: null,
     userReviewSeason: null,
+    keywords: null,
   },
 
   reducers: {
@@ -62,6 +63,9 @@ const TVShowsSlice = createSlice({
     addUserReviewsforSeason: (state, action) => {
       state.userReviewSeason = action.payload;
     },
+    addKeywords: (state, action) => {
+      state.keywords = action.payload;
+    },
   },
 });
 
@@ -80,5 +84,6 @@ export const {
   addEpisodeInfo,
   addCastforSeason,
   addUserReviewsforSeason,
+  addKeywords,
 } = TVShowsSlice.actions;
 export default TVShowsSlice.reducer;
