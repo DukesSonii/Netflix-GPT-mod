@@ -13,6 +13,7 @@ import ShowsContainer from "./Secondary Container for Shows/ShowsContainer";
 import useLatestShows from "../Hooks/Hooks for Shows/useLatestShows";
 import useUpcomingShows from "../Hooks/Hooks for Shows/useUpcomingShows";
 import usePopularShows from "../Hooks/Hooks for Shows/usePopularShows";
+import SeriesContainer from "./Main Container/SeriesContainer";
 
 const Browse = () => {
   const [isMovieMode, setIsMovieMode] = useState(true);
@@ -34,7 +35,7 @@ const Browse = () => {
         <GptSearch />
       ) : (
         <>
-          <MainContainer />
+          {isMovieMode ? <MainContainer /> : <SeriesContainer />}
           <div className="absolute ml-[82%] p-1 w-60 -mt-80 bg-black bg-opacity-70 backdrop-blur-sm rounded-full shadow-lg border-2 border-gray-700">
             <button
               className={`${

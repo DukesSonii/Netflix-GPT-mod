@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Modal, Button } from "antd";
 import { useSelector } from "react-redux";
-import { UserOutlined } from "@ant-design/icons"; // Ant Design icon for the user
+import { UserOutlined } from "@ant-design/icons";
 import "./Reviews.css";
 
-const UserReviews = () => {
-  const reviews = useSelector((store) => store.movie.userReviews);
+const UserReviewsforShows = () => {
+  const reviews = useSelector((store) => store.show.userReviewSeason);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [expandedReviewId, setExpandedReviewId] = useState(null);
 
@@ -89,4 +90,4 @@ const UserReviews = () => {
   );
 };
 
-export default UserReviews;
+export default UserReviewsforShows;

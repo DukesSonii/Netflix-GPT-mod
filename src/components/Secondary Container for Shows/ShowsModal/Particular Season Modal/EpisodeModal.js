@@ -4,6 +4,7 @@ import PopularScreenshots from "./PopularScreenshots";
 import useParticularEpisode from "../../../../Hooks/Hooks for Shows/useParticularEpisode";
 import { useSelector } from "react-redux";
 import { UpOutlined, DownOutlined } from "@ant-design/icons";
+import ShimmerforTrailer from "./ShimmerforTrailer";
 
 const EpisodeModal = ({
   isVisible,
@@ -20,7 +21,7 @@ const EpisodeModal = ({
   const getEpisode = useSelector((store) => store?.show?.episodeinfo);
   const [showFullCast, setShowFullCast] = useState(false);
 
-  useParticularEpisode(
+  const loading = useParticularEpisode(
     basicdetails?.id,
     selectedSeason?.season_number,
     activeAccordion
@@ -73,35 +74,41 @@ const EpisodeModal = ({
               onClick={() => handleAccordionToggle(episode.episode_number)}
             >
               <div className="flex">
-                <div className="flex-shrink-0">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`}
-                    alt={episode.name}
-                    className="w-20 h-28 rounded-md object-cover"
-                  />
-                </div>
-                <div className="ml-4 flex-grow">
-                  <h3 className="text-white font-bold text-lg">
-                    Episode {episode.episode_number}: {episode.name}
-                  </h3>
-                  <p className="text-gray-400 mt-1">{episode.overview}</p>
-                  <p className="text-gray-400 mt-2">
-                    Release Date: {episode.air_date}
-                  </p>
-                  <p className="text-gray-400 mt-2">
-                    Runtime: {episode.runtime} minutes
-                  </p>
-                </div>
-                <span className="text-white">
-                  {activeAccordion === episode.episode_number ? (
-                    <DownOutlined />
-                  ) : (
-                    <UpOutlined />
-                  )}
-                </span>
+                {loading && activeAccordion === episode.episode_number ? (
+                  <ShimmerforTrailer />
+                ) : (
+                  <>
+                    <div className="flex-shrink-0">
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`}
+                        alt={episode.name}
+                        className="w-20 h-28 rounded-md object-cover"
+                      />
+                    </div>
+                    <div className="ml-4 flex-grow">
+                      <h3 className="text-white font-bold text-lg">
+                        Episode {episode.episode_number}: {episode.name}
+                      </h3>
+                      <p className="text-gray-400 mt-1">{episode.overview}</p>
+                      <p className="text-gray-400 mt-2">
+                        Release Date: {episode.air_date}
+                      </p>
+                      <p className="text-gray-400 mt-2">
+                        Runtime: {episode.runtime} minutes
+                      </p>
+                    </div>
+                    <span className="text-white">
+                      {activeAccordion === episode.episode_number ? (
+                        <DownOutlined />
+                      ) : (
+                        <UpOutlined />
+                      )}
+                    </span>
+                  </>
+                )}
               </div>
 
-              {activeAccordion === episode.episode_number && (
+              {activeAccordion === episode.episode_number && !loading && (
                 <div className="mt-4">
                   {getEpisode?.length > 0 ? (
                     <iframe

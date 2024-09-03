@@ -1,0 +1,23 @@
+.modal-css .ant-modal-content {
+  background-color: #1a1a1a;
+  color: white;
+  width: 900px;
+  top: -50px;
+}
+
+.modal-css .ant-modal-header {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.modal-css .ant-modal-title {
+  color: white;
+}
+
+.modal-css .ant-modal-close {
+  color: white;
+}
+
+.modal-css .ant-modal-close:hover {
+  color: rgb(24, 81, 227);
+}
