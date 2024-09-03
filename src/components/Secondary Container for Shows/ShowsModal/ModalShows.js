@@ -5,6 +5,7 @@ import OtherDetailsforShows from "./OtherDetailsforShows";
 import SeasonDetails from "./Particular Season Modal/SeasonDetails";
 import CharactersCast from "./CharactersCast";
 import SimilarShows from "./SimilarShows";
+import UserReviewsforShows from "./UserReviewsforShows";
 const ModalShows = ({
   isVisible,
   onOk,
@@ -120,6 +121,7 @@ const ModalShows = ({
         <SimilarShows onPosterClick={onPosterClick} />
         <hr className="border-t border-gray-600 opacity-30 mt-2" />
         <OtherDetailsforShows basicdetails={basicdetails} />
+        <UserReviewsforShows />
       </Modal>
     </div>
   );
